@@ -257,14 +257,14 @@ io.on('connection', function (socket) {
         console.log('QR RECEIVED', qr);
         qrcode.toDataURL(qr, (err, url) => {
             socket.emit('qr', url);
-            socket.emit('message', 'BOT-ZDG QRCode recebido, aponte a câmera do seu celular!');
+            socket.emit('message', 'QRCode recebido, aponte a câmera do seu celular!');
         });
     });
 
     // Evento disparado quando o cliente está pronto para uso
     client.on('ready', async () => {
-        socket.emit('ready', 'BOT-ZDG Dispositivo pronto!');
-        socket.emit('message', 'BOT-ZDG Dispositivo pronto!');
+        socket.emit('ready', 'Dispositivo pronto!');
+        socket.emit('message', 'Dispositivo pronto!');
 
 
         // Tarefa agendada para executar a lógica de envio de mensagens periodicamente
@@ -478,27 +478,27 @@ io.on('connection', function (socket) {
     client.on('authenticated', () => {
         if (!authenticated) {
             authenticated = true;
-            socket.emit('authenticated', 'BOT-ZDG Autenticado!');
-            socket.emit('message', 'BOT-ZDG Autenticado!');
-            console.log('BOT-ZDG Autenticado');
+            socket.emit('authenticated', 'Autenticado!');
+            socket.emit('message', 'Autenticado!');
+            console.log('Autenticado');
         }
     });
 
     // Evento disparado quando a autenticação falha
     client.on('auth_failure', function () {
-        socket.emit('message', 'BOT-ZDG Falha na autenticação, reiniciando...');
-        console.error('BOT-ZDG Falha na autenticação');
+        socket.emit('message', 'Falha na autenticação, reiniciando...');
+        console.error('Falha na autenticação');
     });
 
     // Evento disparado quando o estado de conexão do cliente muda
     client.on('change_state', state => {
-        console.log('BOT-ZDG Status de conexão:', state);
+        console.log('Status de conexão:', state);
     });
 
     // Evento disparado quando o cliente é desconectado
     client.on('disconnected', (reason) => {
-        socket.emit('message', 'BOT-ZDG Cliente desconectado!');
-        console.log('BOT-ZDG Cliente desconectado', reason);
+        socket.emit('message', 'Cliente desconectado!');
+        console.log('Cliente desconectado', reason);
         client.initialize();
     });
 });
